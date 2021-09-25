@@ -33,11 +33,10 @@
         android:layout_height="wrap_content"
         android:padding="22dp"
         android:text="Share"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/guideline2"
-        />
+        app:layout_constraintRight_toLeftOf="@id/guideline2" />
 
     <Button
         android:id="@+id/nextButton"
@@ -45,7 +44,7 @@
         android:layout_height="wrap_content"
         android:padding="22dp"
         android:text="Next"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBar"
         app:layout_constraintLeft_toRightOf="@id/guideline2"
         app:layout_constraintRight_toRightOf="parent"
         />
@@ -57,5 +56,16 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5"
         />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/bottom_menu_navigation"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
