@@ -76,10 +76,6 @@
         "source": "/home/udit/AndroidStudioProjects/AndroidAPP-Meme/app/src/main/res/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "/home/udit/AndroidStudioProjects/AndroidAPP-Meme/app/build/intermediates/merged_res/debug/drawable_test.png.flat",
-        "source": "/home/udit/AndroidStudioProjects/AndroidAPP-Meme/app/src/main/res/drawable/test.png"
-    },
-    {
         "merged": "/home/udit/AndroidStudioProjects/AndroidAPP-Meme/app/build/intermediates/merged_res/debug/mipmap-hdpi_ic_launcher.webp.flat",
         "source": "/home/udit/AndroidStudioProjects/AndroidAPP-Meme/app/src/main/res/mipmap-hdpi/ic_launcher.webp"
     },

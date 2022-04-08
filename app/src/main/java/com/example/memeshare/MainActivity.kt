@@ -2,16 +2,11 @@ package com.example.memeshare
 
 import android.content.Intent
 import android.graphics.drawable.Drawable
-import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.Toast
-import androidx.loader.content.AsyncTaskLoader
-import com.android.volley.AsyncNetwork
+import android.widget.*
+import androidx.core.content.ContextCompat
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -20,59 +15,70 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.navigation.NavigationBarMenu
 import com.google.android.material.navigation.NavigationBarView
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
-    lateinit var currentMemeURL: String
+    var currentMemeURL: String = ""
     var currentIndex = 0
+    lateinit var navigationBar: NavigationBarView
     lateinit var loadingProgressBar: ProgressBar
     lateinit var memeImage : ImageView
     lateinit var memeList: ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        currentMemeURL = ""
-        memeList = ArrayList<String>(0)
-        val navigationBar = findViewById<NavigationBarView>(R.id.navigationBar)
+        memeList = ArrayList(10)
+        navigationBar = findViewById(R.id.navigationBar)
         val mOnNavigationItemClickListener = NavigationBarView.OnItemSelectedListener {
             when(it.itemId){
+
                 R.id.share -> {
-                    var intent=Intent(Intent.ACTION_SEND)
+
+//                    navigationBar.menu.findItem(R.id.share).isVisible = false
+//                    navigationBar.menu.findItem(R.id.back).isVisible = false
+//                    navigationBar.menu.findItem(R.id.next).isVisible = false
+                    navigationBar.isEnabled = false
+                    val intent=Intent(Intent.ACTION_SEND)
                     intent.type="text/plain"
                     intent.putExtra(Intent.EXTRA_TEXT, currentMemeURL)
                     val chooser = Intent.createChooser(intent, "Share this meme with ... ")
                     startActivity(chooser)
+                    navigationBar.menu.findItem(R.id.share).isEnabled = true
+                    navigationBar.menu.findItem(R.id.back).isEnabled = true
+                    navigationBar.menu.findItem(R.id.next).isEnabled = true
                     return@OnItemSelectedListener true
                 }
                 R.id.back -> {
+                    loadingProgressBar.visibility = View.VISIBLE
                     if(currentIndex < 1) {
                         Toast.makeText(this, "No meme was loaded before this current meme. Please " +
                                 "press next to load more meme", Toast.LENGTH_SHORT).show()
-//                        Log.d("sizeBackFunc", currentIndex.toString())
-                        return@OnItemSelectedListener true
                     }
                     else {
                         loadMemeFromStorage(memeList[--currentIndex])
                         currentMemeURL = memeList[currentIndex]
-//                        Log.d("size1back", currentIndex.toString())
-                        return@OnItemSelectedListener true
                     }
+//                    navigationBar.menu.findItem(R.id.share).isEnabled = true
+                    return@OnItemSelectedListener true
                 }
                 R.id.next -> {
+                    loadingProgressBar.visibility = View.VISIBLE
+                    navigationBar.menu.findItem(R.id.next).isCheckable = false
                     if(currentIndex+1==memeList.size) {
                         loadMeme()
-                        currentIndex++
-                        currentMemeURL = memeList[currentIndex-1]
-                        return@OnItemSelectedListener true
+                        currentMemeURL = memeList[currentIndex++]
+                    }
+                    else if(currentIndex == memeList.size){
+                        loadMemeFromStorage(currentMemeURL)
                     }
                     else {
                         if(currentMemeURL == memeList[currentIndex]) loadMemeFromStorage(memeList[++currentIndex])
                         else loadMemeFromStorage(memeList[currentIndex++])
                         currentMemeURL = memeList[currentIndex]
-//                        Log.d("size1next", currentIndex.toString())
-                        return@OnItemSelectedListener true
                     }
+                    return@OnItemSelectedListener true
                 }
             }
             false
@@ -82,7 +88,7 @@ class MainActivity : AppCompatActivity() {
         loadingProgressBar=findViewById(R.id.loadingBar)
         loadMeme()
     }
-    fun processImage(url: String){
+    private fun processImage(url: String){
         Glide.with(this).load(url)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
@@ -122,7 +128,7 @@ class MainActivity : AppCompatActivity() {
             })
         queue.add(jsonObjectRequest)
     }
-    fun loadMemeFromStorage(url: String){
+    fun loadMemeFromStorage(url: String) {
         memeImage.setImageResource(R.drawable.black)
         loadingProgressBar.visibility = View.VISIBLE
         processImage(url)

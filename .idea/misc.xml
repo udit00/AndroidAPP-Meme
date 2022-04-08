@@ -8,6 +8,14 @@
         <entry key="..\:/Users/Udit/AndroidStudioProjects/MemeShare/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2890625" />
         <entry key="..\:/Users/Udit/AndroidStudioProjects/MemeShare/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Udit/AndroidStudioProjects/MemeShare/app/src/main/res/menu/bottom_menu_navigation.xml" value="0.14270833333333333" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.185" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1715" />
+        <entry key="app/src/main/res/drawable/ic_next.xml" value="0.185" />
+        <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.1715" />
+        <entry key="app/src/main/res/drawable/ic_share.xml" value="0.1715" />
+        <entry key="app/src/main/res/drawable/round_button.xml" value="0.1715" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.307518115942029" />
+        <entry key="app/src/main/res/menu/bottom_menu_navigation.xml" value="0.35520833333333335" />
       </map>
     </option>
   </component>

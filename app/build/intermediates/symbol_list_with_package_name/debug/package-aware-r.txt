@@ -1147,6 +1147,7 @@ color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
 color foreground_material_light
+color gray
 color highlighted_text_material_dark
 color highlighted_text_material_light
 color material_blue_grey_800
@@ -1830,7 +1831,6 @@ drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable round_button
-drawable test
 drawable test_custom_background
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
