@@ -1,0 +1,2 @@
+com/example/memeshare/BuildConfig.java
+ com.example.memeshare.BuildConfig
